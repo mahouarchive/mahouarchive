@@ -33,7 +33,28 @@ h1, h2, h3, h4, b, .logo {
   margin: auto;
   padding: 40px 20px;
 }
+/* 1. The parent container holding both pieces */
+.main-layout-wrapper {
+  display: flex;
+  align-items: flex-start; /* Keeps tops aligned */
+  gap: 20px;               /* This creates a safe gap between them so they never touch */
+  max-width: 1200px;       /* Adjust to your preference */
+  margin: 0 auto;          /* Centers the whole layout on the screen */
+}
 
+/* 2. Your Sidebar styling */
+.sidebar-container {
+  width: 280px;            /* Fixes the sidebar to a reliable size */
+  flex-shrink: 0;          /* Prevents the sidebar from getting squished */
+  /* REMOVE any "position: absolute;" or "float" if they are present here! */
+}
+
+/* 3. Your Main Post Box styling */
+.content-container {
+  flex-grow: 1;            /* Tells the post box to safely take up all remaining space */
+  min-width: 0;            /* Prevents inner text/images from forcing it to expand too wide */
+  /* REMOVE any hardcoded "margin-left" values that were trying to push it past the old sidebar */
+}
 .header {
   display: flex;
   justify-content: space-between;
