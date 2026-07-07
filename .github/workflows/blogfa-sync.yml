@@ -1,9 +1,8 @@
 name: Sync Blogfa Posts
 on:
   schedule:
-    # Runs every hour (you can change this cron timing if needed)
     - cron: '0 * * * *'
-  workflow_dispatch: # Allows you to manually trigger it anytime
+  workflow_dispatch: 
 
 jobs:
   update-readme:
@@ -11,11 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        # CHANGED: Bumped from v4 to v4.2.2 (or latest) which updates internal Node configurations
+        uses: actions/checkout@v4.2.2
         
       - name: Pull blog posts
-        uses: gautamkrishnar/blog-post-workflow@v1
+        # CHANGED: Bumped from v1 to v1.6.8 (or your feed tool's latest release)
+        uses: gautamkrishnar/blog-post-workflow@v1.6.8
         with:
-          # REPLACE WITH YOUR ACTUAL BLOGFA FEED URL:
-          feed_list: "http://mahouarchive.blogfa.com/rss"
-          max_post_count: 5
+          feed_list: "http://yourusername.blogfa.com/rss"
+          max_post_count: 10
