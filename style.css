@@ -106,18 +106,32 @@ h1, h2, h3, h4, b, .logo {
 @keyframes triggerSpin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
+/* --- FIXED LAYOUT ENGINE --- */
 .main {
-  display: grid;
-  grid-template-columns: minmax(0, 800px) 340px;
-  gap: 35px;
-  justify-content: center;
+  display: flex;
+  flex-direction: row;       /* Aligns them side-by-side */
+  justify-content: center;   /* Centers the entire layout block */
+  align-items: flex-start;   /* Keeps the tops of both columns perfectly aligned */
+  gap: 35px;                 /* Absolute protective cushion between post and sidebar */
+  max-width: 1200px;
+  margin: 0 auto;            /* Centers it on the page */
+  width: 100%;
 }
 
+/* The column holding your posts */
 .main > div:first-child {
-  width: 100%;
-  min-width: 0;
+  flex: 1;                   /* Tells the posts to take up all available horizontal space */
+  min-width: 0;              /* Crucial: Prevents internal elements from breaking layout boundaries */
+  width: auto;               /* Overrides hardcoded defaults */
+}
+
+/* Your Sidebar Column */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 340px;              /* Sets your precise sidebar width */
+  flex-shrink: 0;            /* Strictly prevents the sidebar from being compressed */
 }
 
 .post {
