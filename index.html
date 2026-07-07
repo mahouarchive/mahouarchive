@@ -1,14 +1,77 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <link rel="stylesheet" href="style.css">
-  <meta name="google-site-verification" content="KNosCimijs11PABxeHn2MMVs36YG3CoYw1b7uRzaA5U" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAHOU ARCHIVE</title>
-
+  
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Vazirmatn:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <!-- OVERRIDE FORCED LAYOUT FIX -->
+  <style>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Absolute Grid Engine - Side by Side Column Control */
+    .main {
+      display: grid !important;
+      grid-template-columns: 1fr 340px !important; /* Post area takes left, Sidebar takes exactly 340px on right */
+      gap: 35px !important;
+      width: 100% !important;
+    }
+
+    /* Left Side: Dynamic Posts area */
+    #blogfa-mirror-posts {
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    /* Right Side: Fixed Sidebar area */
+    .sidebar {
+      width: 340px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 30px !important;
+    }
+
+    /* Post Card Box styling matching your main design */
+    .post-card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      margin-bottom: 35px;
+      border: 3px solid #1a1820;
+      position: relative;
+      box-shadow: 8px 8px 0px #ff2e63;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      word-wrap: break-word;
+    }
+    .post-card:hover {
+      transform: translate(2px, -2px);
+      box-shadow: 12px 12px 0px #00dffc;
+    }
+    .post-card h2 {
+      font-size: 26px;
+      margin-bottom: 14px;
+    }
+    .post-card h2 a {
+      color: #1a1820;
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .main {
+        grid-template-columns: 1fr !important; /* Stacks vertically cleanly on mobile screens */
+      }
+      .sidebar {
+        width: 100% !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -16,21 +79,26 @@
 
 <div class="container">
 
+  <!-- HEADER -->
   <div class="header">
     <a href="#" class="logo">MAHOU ARCHIVE: ارشیو مدیا </a>
     <div><i class="fas fa-bullseye"></i></div>
   </div>
 
+  <!-- MAIN ENGINE CONTENT AREA -->
   <div class="main">
 
-    <!-- 1. POST COLUMN (Where your mirror posts will display) -->
+    <!-- COLUMN 1: MIRROR POSTS CONTAINER -->
     <div id="blogfa-mirror-posts">
-      <p style="text-align: center; padding: 40px; color: #5a5666; font-family: 'Vazirmatn', sans-serif;">در حال بارگذاری آرشیو وبلاگ...</p>
+      <div class="post-card">
+        <p style="text-align: center; color: #5a5666; font-family: 'Vazirmatn', sans-serif;">در حال بارگذاری نوشته‌های وبلاگ...</p>
+      </div>
     </div>
 
-    <!-- 2. SIDEBAR COLUMN -->
+    <!-- COLUMN 2: SIDEBAR PANEL SYSTEM -->
     <div class="sidebar">
       
+      <!-- Profile -->
       <div class="panel">
         <b><i class="fas fa-user-circle"></i>About Me!</b>
         <div class="webmaster-profile">
@@ -47,12 +115,14 @@
         </div>
       </div>
 
+      <!-- Music Player -->
       <div class="panel">
         <b><i class="fas fa-music"></i> 🎧 Playlists </b>
         <div id="playlist-container"></div>
         <audio id="player" controls preload="none"></audio>
       </div>
 
+      <!-- Archive Visuals -->
       <div class="panel">
         <b><i class="fas fa-shield-alt"></i> About </b>
         <img class="about-img" src="https://uploadkon.ir/uploads/c9b229_26cff7ba6be9f4ab104271ca89e4451844.jpg" alt="Surveillance Layer Image">
@@ -62,22 +132,12 @@
         </div>
       </div>
 
-      <div class="panel">
-        <b><i class="fas fa-history"></i> ✮ Archives </b>
-        <div class="archive-list">
-          <a href="https://mahouarchive.blogfa.com/post/5/%d9%86%d8%ad%d9%8-%da%a9%d8%a7%d8%b1-%d8%a8%d8%a7-%d9%be%d9%84%db%8c-%d9%84%db%8c%d8%b3%d8%aa-%d9%87%d8%a7-" class="archive-link" target="_blank">
-            <span>استفاده از پلی لیست ها</span>
-            <i class="fas fa-arrow-left"></i>
-          </a>
-        </div>
-      </div>
-
     </div> <!-- End Sidebar -->
 
   </div> <!-- End Main -->
 </div> <!-- End Container -->
 
-<!-- SCRIPTS ENGINE -->
+<!-- AUDIO ARCHIVE SYSTEM SCRIPTS -->
 <script>
 const playlists = [
   {
@@ -90,7 +150,7 @@ const playlists = [
       },
       {
         name: "Dectrum",
-        url: "https://uploadkon.ir/uploads/312d29_2612-Decretum-Sayaka-Miki-s-Them-Madoka-Magica【まどか★マギカ】-PianoBox.mp3",
+        url: "https://uploadkon.ir/uploads/312d29_2612-Decretum-Sayaka-Miki-s-Them-Madoka-Magica【まどکま★マギカ】-PianoBox.mp3",
         cover: "https://uploadkon.ir/uploads/b4f529_26IMG-20260529-231602.jpg"
       },
       {
@@ -117,47 +177,7 @@ const playlists = [
         name:  "Readymade",
         url: "https://uploadkon.ir/uploads/926d24_26Ado-Readymade-000012.mp3",
         cover: "https://uploadkon.ir/uploads/ff9f24_2628a32cbc5884bbb69739f1f073c541bb-1000x1000x1.png"
-       },
-      {
-        name: "God-ish",
-        url: "https://uploadkon.ir/uploads/d4d624_26Ado-God-ish-000046.mp3",
-        cover: "https://uploadkon.ir/uploads/25ab24_26634ac404c5a9b92c40416a83906fa4f9-1000x1000x1.png"
-       },
-      {
-        name: "Chocolat Cadabra",
-        url: "https://uploadkon.ir/uploads/212930_26Ado-ショコラカタブラ-128.mp3",
-        cover: "https://uploadkon.ir/uploads/01bf30_26images-9-.jpeg"
-      },
-      {
-        name: "MIRROR",
-        url: "https://uploadkon.ir/uploads/363c30_26Ado-MIRROR-128.mp3",
-        cover: "https://uploadkon.ir/uploads/c1b530_26images-10-.jpeg"
-      },
-      {
-        name: "RuLe",
-        url: "https://uploadkon.ir/uploads/ecf730_26Ado-Rule-128.mp3",
-        cover: "https://uploadkon.ir/uploads/e13f30_26IMG-20260530-165538.jpg"
-      },
-      {
-        name: "BACKLIGHT",
-        url: "https://uploadkon.ir/uploads/ecf730_26Ado-逆光-ウタ-from-ONE-PIECE-FILM-RED-128.mp3",
-        cover: "https://uploadkon.ir/uploads/203530_26IMG-20260530-165511.jpg"
-      },
-      {
-        name: "I'm A Controversy",
-        url: "https://uploadkon.ir/uploads/eaa130_26Im-a-controversy-Ado.mp3",
-        cover: "https://uploadkon.ir/uploads/7f5430_26images-11-.jpeg"
-      }
-    ]
-  }, 
-  {
-    folderName: "Fav late nighters",
-    songs: [
-      {
-        name: "Salt-Wound routine",
-        url: "https://uploadkon.ir/uploads/dc8024_26saltwound-routine-11vein.mp3",
-        cover: "https://uploadkon.ir/uploads/519024_261782114380677.jpg"
-      }
+       }
     ]
   }
 ];
@@ -165,7 +185,6 @@ const playlists = [
 let currentFolderIdx = null;
 let currentSongIdx = null;
 
-// Playlist Renderer
 const playlistContainer = document.getElementById('playlist-container');
 if (playlistContainer && playlists && playlists.length > 0) {
   playlists.forEach((folder, fIdx) => {
@@ -178,17 +197,14 @@ if (playlistContainer && playlists && playlists.length > 0) {
       </div>
       <div class="folder-songs" id="folder-${fIdx}"><div class="folder-songs-inner"></div></div>
     `;
-    
     const inner = fDiv.querySelector('.folder-songs-inner');
     folder.songs.forEach((song, sIdx) => {
       const sDiv = document.createElement('div');
       sDiv.className = 'song';
-      sDiv.id = `song-${fIdx}-${sIdx}`;
       sDiv.onclick = (e) => { e.stopPropagation(); playTrack(fIdx, sIdx); };
       sDiv.innerHTML = `
-        <img src="${song.cover || 'https://uploadkon.ir/uploads/06a730_26InShot-20260530-094627246.gif'}">
+        <img src="${song.cover}">
         <span>${song.name}</span>
-        <div class="wave"><span></span><span></span><span></span></div>
       `;
       inner.appendChild(sDiv);
     });
@@ -204,30 +220,14 @@ function toggleFolder(idx) {
 function playTrack(fIdx, sIdx) {
   const player = document.getElementById('player');
   if (!player) return;
-  document.querySelectorAll('.song').forEach(s => s.classList.remove('is-playing'));
   currentFolderIdx = fIdx; currentSongIdx = sIdx;
-  const songEl = document.getElementById(`song-${fIdx}-${sIdx}`);
-  if(songEl) songEl.classList.add('is-playing');
   player.src = playlists[fIdx].songs[sIdx].url;
   player.style.display = 'block';
-  player.play().catch(err => console.log("Audio presentation blocked:", err));
+  player.play().catch(err => console.log("Audio blocked:", err));
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const player = document.getElementById('player');
-  if (player) {
-    player.addEventListener('ended', () => {
-      if (currentFolderIdx !== null && currentSongIdx !== null) {
-        let next = currentSongIdx + 1;
-        if (next >= playlists[currentFolderIdx].songs.length) next = 0;
-        playTrack(currentFolderIdx, next);
-      }
-    });
-  }
-});
 </script>
 
-<!-- LIVE BLOGFA STREAMING SCRIPT -->
+<!-- AUTOMATIC LIVE POST FETCH ENGINE FROM RSS -->
 <script>
   const rssFeedUrl = "https://mahouarchive.blogfa.com/rss"; 
   const apiEndpoint = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
@@ -239,19 +239,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (data.status === 'ok') {
         const container = document.getElementById('blogfa-mirror-posts');
-        container.innerHTML = ''; 
+        container.innerHTML = ''; // Safely wipes out placeholder content
 
         data.items.forEach(post => {
           const postElement = document.createElement('div');
-          postElement.className = 'post'; 
+          postElement.className = 'post-card'; 
 
           postElement.innerHTML = `
             <h2><a href="${post.link}" target="_blank">✮ ${post.title}</a></h2>
             <div class="post-meta">
               <span><i class="fas fa-dot-circle"></i> ${new Date(post.pubDate).toLocaleDateString('fa-IR')}</span>
             </div>
-            <p>${post.description}</p>
-            <div class="post-action-row">
+            <div style="margin-top:15px; color:#33303b;">${post.description}</div>
+            <div class="post-action-row" style="margin-top:20px;">
               <a class="comment-redirect-link" href="${post.link}" target="_blank">
                 <i class="far fa-comment-dots"></i> مشاهده نظرات در وبلاگ اصلی
               </a>
@@ -260,11 +260,11 @@ document.addEventListener("DOMContentLoaded", () => {
           container.appendChild(postElement);
         });
       } else {
-        document.getElementById('blogfa-mirror-posts').innerHTML = '<p style="text-align:center; padding:20px;">خطا در بارگذاری اطلاعات وبلاگ.</p>';
+        document.getElementById('blogfa-mirror-posts').innerHTML = '<div class="post-card"><p>خطا در دریافت اطلاعات.</p></div>';
       }
     } catch (error) {
-      console.error('Error fetching RSS:', error);
-      document.getElementById('blogfa-mirror-posts').innerHTML = '<p style="text-align:center; padding:20px;">مشکلی در اتصال به آرشیو پیش آمد.</p>';
+      console.error(error);
+      document.getElementById('blogfa-mirror-posts').innerHTML = '<div class="post-card"><p>مشکلی در اتصال به منبع رخ داد.</p></div>';
     }
   }
 
