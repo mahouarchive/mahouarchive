@@ -9,9 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Inter:wght=300;400;500&family=Vazirmatn:wght=200;300;400;500&display=swap" rel="stylesheet">
 
-  <!-- OVERRIDE INJECTOR FOR RSS CARDS -->
   <style>
-    /* Ensures the dynamic RSS posts share the identical layout of your .post class */
+    /* NATIVE ALIGNED RSS CARD OVERRIDES */
     .custom-post-card {
       background: rgba(255, 255, 255, 0.95);
       padding: 40px;
@@ -38,13 +37,14 @@
       margin-bottom: 14px;
     }
 
-    .custom-post-card h2 a {
+    .custom-post-card h2 span.post-title-link {
       color: #1a1820;
-      text-decoration: none;
+      cursor: pointer;
       font-weight: 600;
+      transition: color 0.2s;
     }
 
-    .custom-post-card:hover h2 a {
+    .custom-post-card:hover h2 span.post-title-link {
       color: #ff2e63;
     }
 
@@ -74,6 +74,20 @@
       color: #33303b;
       line-height: 1.8;
       text-align: justify;
+      max-height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Elegant fade out for snippet views */
+    .custom-post-body::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(transparent, rgba(255, 255, 255, 0.95));
     }
 
     .custom-post-link {
@@ -98,11 +112,84 @@
       background: #00dffc;
       box-shadow: 3px 3px 0px #1a1820;
     }
+
+    /* IN-SITE EMBEDDED INTERNAL READING MODAL */
+    .mahou-reader-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(26, 24, 32, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .mahou-reader-content {
+      background: #ffffff;
+      border: 3px solid #1a1820;
+      box-shadow: 12px 12px 0px #ff2e63;
+      width: 100%;
+      max-width: 800px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+      animation: modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .mahou-reader-close {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #1a1820;
+      color: #ffffff;
+      border: none;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 3px 3px 0px #00dffc;
+      transition: all 0.2s;
+    }
+
+    .mahou-reader-close:hover {
+      background: #ff2e63;
+      box-shadow: 3px 3px 0px #1a1820;
+    }
+
+    .mahou-reader-html img {
+      max-width: 100% !important;
+      height: auto !important;
+      border: 2px solid #1a1820 !important;
+      margin: 15px auto !important;
+      display: block;
+    }
   </style>
 </head>
 <body>
 
 <div id="back-to-top" title="Reload Position"><i class="fas fa-crosshairs"></i></div>
+
+<!-- THE INTERNAL SITE READER ELEMENT -->
+<div id="mahou-reader" class="mahou-reader-modal" onclick="closeInternalReader()">
+  <div class="mahou-reader-content" onclick="event.stopPropagation()">
+    <button class="mahou-reader-close" onclick="closeInternalReader()"><i class="fas fa-times"></i></button>
+    <h1 id="reader-title" style="font-size: 28px; margin-bottom: 10px; margin-top: 10px;"></h1>
+    <div class="custom-post-meta" id="reader-meta"></div>
+    <div id="reader-body" class="mahou-reader-html" style="line-height: 1.9; font-size: 15px; text-align: justify; color: #222;"></div>
+  </div>
+</div>
 
 <div class="container">
 
@@ -112,7 +199,7 @@
     <div><i class="fas fa-bullseye"></i></div>
   </div>
 
-  <!-- MAIN NATIVE LAYOUT ENGINE (Matches your CSS perfectly) -->
+  <!-- MAIN NATIVE LAYOUT ENGINE -->
   <div class="main">
 
     <!-- COLUMN 1: POSTS COLUMN -->
@@ -149,7 +236,7 @@
         <audio id="player" controls preload="none"></audio>
       </div>
 
-      <!-- Archive/About Visuals Box -->
+      <!-- About Box -->
       <div class="panel">
         <b><i class="fas fa-shield-alt"></i> About </b>
         <img class="about-img" src="https://uploadkon.ir/uploads/c9b229_26cff7ba6be9f4ab104271ca89e4451844.jpg" alt="Surveillance Layer Image">
@@ -256,10 +343,13 @@ function playTrack(fIdx, sIdx) {
 }
 </script>
 
-<!-- AUTOMATIC LIVE RSS FETCH ENGINE -->
+<!-- DYNAMIC FULL-CONTENT DUP ENGINE WITH IN-SITE CONTAINER -->
 <script>
-  const rssFeedUrl = "https://mahouarchive.blogfa.com/rss"; 
-  const apiEndpoint = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
+  // Switching to rss2 ensures full HTML injection contents instead of partial limits
+  const rssFeedUrl = "https://mahouarchive.blogfa.com/rss2"; 
+  const apiEndpoint = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}&count=20`;
+
+  let loadedFeedItems = [];
 
   async function loadMirrorPosts() {
     try {
@@ -267,34 +357,56 @@ function playTrack(fIdx, sIdx) {
       const data = await response.json();
 
       if (data.status === 'ok') {
+        loadedFeedItems = data.items;
         const container = document.getElementById('blogfa-mirror-posts');
         container.innerHTML = ''; 
 
-        data.items.forEach(post => {
+        loadedFeedItems.forEach((post, index) => {
           const postElement = document.createElement('div');
           postElement.className = 'custom-post-card'; 
 
+          // Cleans template parameters if present
+          let previewText = post.description.replace(/<[^>]*>/g, '').substring(0, 200) + '...';
+
           postElement.innerHTML = `
-            <h2><a href="${post.link}" target="_blank">★ ${post.title}</a></h2>
+            <h2><span class="post-title-link" onclick="openInternalReader(${index})">★ ${post.title}</span></h2>
             <div class="custom-post-meta">
               <span><i class="fas fa-calendar-alt"></i> ${new Date(post.pubDate).toLocaleDateString('fa-IR')}</span>
             </div>
             <div class="custom-post-body">${post.description}</div>
             <div>
-              <a class="custom-post-link" href="${post.link}" target="_blank">
-                <i class="far fa-comment-dots"></i> مشاهده نظرات و ادامه مطلب
-              </a>
+              <span class="custom-post-link" onclick="openInternalReader(${index})">
+                <i class="far fa-envelope-open"></i> مطالعه کامل نوشته و نظرات داخلی
+              </span>
             </div>
           `;
           container.appendChild(postElement);
         });
       } else {
-        document.getElementById('blogfa-mirror-posts').innerHTML = '<div class="custom-post-card"><p>خطا در دریافت اطلاعات.</p></div>';
+        document.getElementById('blogfa-mirror-posts').innerHTML = '<div class="custom-post-card"><p>خطا در دریافت اطلاعات ارشیو.</p></div>';
       }
     } catch (error) {
       console.error(error);
       document.getElementById('blogfa-mirror-posts').innerHTML = '<div class="custom-post-card"><p>مشکلی در اتصال به منبع رخ داد.</p></div>';
     }
+  }
+
+  // Engine Actions for the Modal View
+  function openInternalReader(index) {
+    const post = loadedFeedItems[index];
+    if(!post) return;
+
+    document.getElementById('reader-title').innerText = `★ ${post.title}`;
+    document.getElementById('reader-meta').innerHTML = `<span><i class="fas fa-calendar-alt"></i> ${new Date(post.pubDate).toLocaleDateString('fa-IR')}</span>`;
+    document.getElementById('reader-body').innerHTML = post.content || post.description;
+    
+    document.getElementById('mahou-reader').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevents background layer scrolling
+  }
+
+  function closeInternalReader() {
+    document.getElementById('mahou-reader').style.display = 'none';
+    document.body.style.overflow = '';
   }
 
   window.addEventListener('DOMContentLoaded', loadMirrorPosts);
