@@ -17,5 +17,5 @@ jobs:
         # CHANGED: Bumped from v1 to v1.6.8 (or your feed tool's latest release)
         uses: gautamkrishnar/blog-post-workflow@v1.6.8
         with:
-          feed_list: "http://yourusername.blogfa.com/rss"
+          feed_list: "http://mahouarchive.blogfa.com/rss"
           max_post_count: 10
