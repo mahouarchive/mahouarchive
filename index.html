@@ -7,50 +7,105 @@
   
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Vazirmatn:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Inter:wght=300;400;500&family=Vazirmatn:wght=200;300;400;500&display=swap" rel="stylesheet">
 
-  <!-- FORCE COEXISTENCE WRAPPER -->
+  <!-- COMPLETE SIDEBAR AND GRID CONTAINER FIX -->
   <style>
-    /* Force layout setup regardless of external style.css rules */
-    .main-grid-container {
+    /* Main Layout Grid Fix */
+    .mahou-main-grid {
       display: flex !important;
-      flex-direction: row-reverse !important; /* Forces Sidebar to Right, Posts to Left in RTL */
+      flex-direction: row !important; /* Force sidebar left, posts right based on your visual alignment preference */
       justify-content: space-between !important;
       align-items: flex-start !important;
-      gap: 30px !important;
-      max-width: 1200px !important;
-      margin: 0 auto !important;
-      padding: 20px !important;
+      gap: 40px !important;
+      max-width: 1250px !important;
+      margin: 40px auto !important;
+      padding: 0 20px !important;
       width: 100% !important;
       box-sizing: border-box !important;
     }
 
-    /* Left Side: Dynamic Posts area */
+    /* Left Content Column: Dynamic RSS Blog Posts */
     #blogfa-mirror-posts {
       flex: 1 !important;
       min-width: 0 !important;
       display: block !important;
     }
 
-    /* Right Side: Fixed Sidebar area */
-    .sidebar-fixed-panel {
+    /* Isolated Sidebar Panel Structure to completely ignore style.css interference */
+    .mahou-sidebar {
       width: 320px !important;
       flex-shrink: 0 !important;
       display: flex !important;
       flex-direction: column !important;
-      gap: 25px !important;
+      gap: 30px !important;
+      box-sizing: border-box !important;
     }
 
-    /* Post Card Box styling to match your aesthetic */
-    .custom-post-card {
-      background: rgba(255, 255, 255, 0.92) !important;
+    .mahou-panel {
+      background: rgba(255, 255, 255, 0.95) !important;
       border: 2px solid #1a1820 !important;
-      padding: 25px !important;
-      margin-bottom: 25px !important;
+      padding: 20px !important;
+      box-shadow: 6px 6px 0px #ff2e63 !important;
+      border-radius: 4px !important;
+      box-sizing: border-box !important;
+      width: 100% !important;
+    }
+
+    .mahou-panel > b {
+      display: block !important;
+      font-size: 15px !important;
+      margin-bottom: 15px !important;
+      border-bottom: 1px dashed #1a1820 !important;
+      padding-bottom: 8px !important;
+      color: #1a1820 !important;
+    }
+
+    .mahou-panel > b i {
+      margin-left: 8px !important;
+    }
+
+    /* Profile Adjustments */
+    .mahou-profile-box {
+      text-align: center !important;
+    }
+
+    .mahou-avatar-wrapper {
+      width: 140px !important;
+      height: 140px !important;
+      margin: 0 auto 15px auto !important;
+      border: 2px solid #1a1820 !important;
+      overflow: hidden !important;
+      box-shadow: 4px 4px 0px #00dffc !important;
+    }
+
+    .mahou-avatar-wrapper img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+
+    .mahou-info h3 {
+      font-size: 18px !important;
+      margin: 5px 0 !important;
+      color: #1a1820 !important;
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    .mahou-info .role {
+      font-size: 12px !important;
+      color: #666 !important;
+    }
+
+    /* Post Card Display */
+    .custom-post-card {
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 2px solid #1a1820 !important;
+      padding: 30px !important;
+      margin-bottom: 30px !important;
       border-radius: 4px !important;
       box-shadow: 6px 6px 0px #ff2e63 !important;
       transition: all 0.3s ease;
-      text-align: right !important;
     }
     
     .custom-post-card:hover {
@@ -59,19 +114,18 @@
     }
 
     .custom-post-card h2 {
-      font-size: 20px !important;
+      font-size: 22px !important;
       margin-top: 0 !important;
-      margin-bottom: 10px !important;
+      margin-bottom: 12px !important;
     }
 
     .custom-post-card h2 a {
       color: #1a1820 !important;
       text-decoration: none !important;
-      font-weight: bold !important;
     }
 
     .custom-post-meta {
-      font-size: 11px !important;
+      font-size: 12px !important;
       color: #666 !important;
       margin-bottom: 15px !important;
     }
@@ -82,14 +136,22 @@
       font-size: 13px !important;
       color: #ff2e63 !important;
       text-decoration: none !important;
+      font-weight: bold !important;
     }
 
-    /* Mobile Responsive Logic */
+    .mahou-about-img {
+      width: 100% !important;
+      height: auto !important;
+      border: 2px solid #1a1820 !important;
+      margin-bottom: 10px !important;
+    }
+
+    /* Mobile Setup */
     @media (max-width: 900px) {
-      .main-grid-container {
-        flex-direction: column !important;
+      .mahou-main-grid {
+        flex-direction: column-reverse !important;
       }
-      .sidebar-fixed-panel {
+      .mahou-sidebar {
         width: 100% !important;
       }
     }
@@ -107,59 +169,59 @@
     <div><i class="fas fa-bullseye"></i></div>
   </div>
 
-  <!-- NEW SYSTEM GRID (Bypasses external main conflicts) -->
-  <div class="main-grid-container">
+  <!-- MAIN ENGINE GRID -->
+  <div class="mahou-main-grid">
 
-    <!-- COLUMN 1: SIDEBAR PANEL SYSTEM (Right side in RTL) -->
-    <div class="sidebar-fixed-panel">
+    <!-- ISOLATED SIDEBAR COLUMN -->
+    <div class="mahou-sidebar">
       
-      <!-- Profile -->
-      <div class="panel">
+      <!-- Panel 1: Profile -->
+      <div class="mahou-panel">
         <b><i class="fas fa-user-circle"></i>About Me!</b>
-        <div class="webmaster-profile">
-          <div class="webmaster-avatar">
+        <div class="mahou-profile-box">
+          <div class="mahou-avatar-wrapper">
             <img src="https://uploadkon.ir/uploads/06a730_26InShot-20260530-094627246.gif" alt="Operator Edgar">
           </div>
-          <div class="webmaster-info">
+          <div class="mahou-info">
             <h3>ALLSSEY (He/Him)</h3>
             <span class="role">Sleepy</span>
           </div>
-        </div>
-        <div class="webmaster-bio">
-          <span style="display: block; margin-top: 8px; color: #ff2e63; font-weight: bold; font-family:'Inter'; font-size:11px;"> STATUS: aint nothing but a heartache</span>
+          <div style="margin-top: 12px; color: #ff2e63; font-weight: bold; font-family:'Inter'; font-size:11px;">
+            STATUS: aint nothing but a heartache
+          </div>
         </div>
       </div>
 
-      <!-- Music Player -->
-      <div class="panel">
+      <!-- Panel 2: Playlist Engine -->
+      <div class="mahou-panel">
         <b><i class="fas fa-music"></i> 🎧 Playlists </b>
         <div id="playlist-container"></div>
-        <audio id="player" controls preload="none"></audio>
+        <audio id="player" controls preload="none" style="width: 100%; margin-top: 10px; display: none;"></audio>
       </div>
 
-      <!-- Archive Visuals -->
-      <div class="panel">
+      <!-- Panel 3: About Visuals -->
+      <div class="mahou-panel">
         <b><i class="fas fa-shield-alt"></i> About </b>
-        <img class="about-img" src="https://uploadkon.ir/uploads/c9b229_26cff7ba6be9f4ab104271ca89e4451844.jpg" alt="Surveillance Layer Image">
-        <div class="webmaster-bio" style="font-size:0.82rem; color:#5a5666;">
+        <img class="mahou-about-img" src="https://uploadkon.ir/uploads/c9b229_26cff7ba6be9f4ab104271ca89e4451844.jpg" alt="Surveillance Layer Image">
+        <div style="font-size:0.82rem; color:#5a5666; line-height: 1.5;">
           WIP <span style="display: block; margin-top: 6px; color: #ff2e63; font-family:'Inter'; font-weight: bold;">TIMESTAMP: 9th Kho/405 🎯</span>
-          <img src="https://uploadkon.ir/uploads/45d730_26IMG-7133.gif" style="display: block; margin-top: 10px; width:100%; border: 2px solid #1a1820;">
+          <img src="https://uploadkon.ir/uploads/45d730_26IMG-7133.gif" style="display: block; margin-top: 12px; width:100%; border: 2px solid #1a1820;">
         </div>
       </div>
 
     </div> <!-- End Sidebar -->
 
-    <!-- COLUMN 2: MIRROR POSTS CONTAINER (Left side in RTL) -->
+    <!-- POSTS COLUMN -->
     <div id="blogfa-mirror-posts">
       <div class="custom-post-card">
         <p style="text-align: center; color: #5a5666; font-family: 'Vazirmatn', sans-serif;">در حال بارگذاری نوشته‌های وبلاگ...</p>
       </div>
     </div>
 
-  </div> <!-- End Main Grid Container -->
+  </div> <!-- End Main Grid -->
 </div> <!-- End Container -->
 
-<!-- AUDIO ARCHIVE SYSTEM SCRIPTS -->
+<!-- AUDIO PLAYER SCRIPTS -->
 <script>
 const playlists = [
   {
@@ -213,19 +275,20 @@ if (playlistContainer && playlists && playlists.length > 0) {
     const fDiv = document.createElement('div');
     fDiv.className = 'playlist-folder';
     fDiv.innerHTML = `
-      <div class="folder-header" onclick="toggleFolder(${fIdx})">
-        <div class="folder-title"><i class="fas fa-folder"></i> <span>${folder.folderName}</span></div>
-        <div class="folder-chevron"><i class="fas fa-chevron-down"></i></div>
+      <div class="folder-header" onclick="toggleFolder(${fIdx})" style="cursor:pointer; padding:8px 0; display:flex; justify-content:space-between;">
+        <div class="folder-title"><i class="fas fa-folder" style="color:#ff2e63;"></i> <span style="font-size:13px; font-weight:bold; margin-right:5px;">${folder.folderName}</span></div>
+        <div class="folder-chevron"><i class="fas fa-chevron-down" style="font-size:10px;"></i></div>
       </div>
-      <div class="folder-songs" id="folder-${fIdx}"><div class="folder-songs-inner"></div></div>
+      <div class="folder-songs" id="folder-${fIdx}" style="display:none; padding-right:15px; margin-top:5px;"><div class="folder-songs-inner"></div></div>
     `;
     const inner = fDiv.querySelector('.folder-songs-inner');
     folder.songs.forEach((song, sIdx) => {
       const sDiv = document.createElement('div');
       sDiv.className = 'song';
+      sDiv.style = "cursor:pointer; padding:6px 0; display:flex; align-items:center; gap:8px; font-size:12px;";
       sDiv.onclick = (e) => { e.stopPropagation(); playTrack(fIdx, sIdx); };
       sDiv.innerHTML = `
-        <img src="${song.cover}">
+        <img src="${song.cover}" style="width:24px; height:24px; border-radius:2px; object-fit:cover;">
         <span>${song.name}</span>
       `;
       inner.appendChild(sDiv);
@@ -235,8 +298,11 @@ if (playlistContainer && playlists && playlists.length > 0) {
 }
 
 function toggleFolder(idx) {
-  const folders = document.querySelectorAll('.playlist-folder');
-  folders.forEach((f, i) => i === idx ? f.classList.toggle('is-open') : f.classList.remove('is-open'));
+  const target = document.getElementById(`folder-${idx}`);
+  if(target) {
+    const isHidden = target.style.display === 'none';
+    target.style.display = isHidden ? 'block' : 'none';
+  }
 }
 
 function playTrack(fIdx, sIdx) {
@@ -249,7 +315,7 @@ function playTrack(fIdx, sIdx) {
 }
 </script>
 
-<!-- AUTOMATIC LIVE POST FETCH ENGINE FROM RSS -->
+<!-- AUTOMATIC LIVE RSS FETCH ENGINE -->
 <script>
   const rssFeedUrl = "https://mahouarchive.blogfa.com/rss"; 
   const apiEndpoint = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
@@ -272,7 +338,7 @@ function playTrack(fIdx, sIdx) {
             <div class="custom-post-meta">
               <span><i class="fas fa-calendar-alt"></i> ${new Date(post.pubDate).toLocaleDateString('fa-IR')}</span>
             </div>
-            <div style="margin-top:10px; color:#222; line-height: 1.7;">${post.description}</div>
+            <div style="margin-top:10px; color:#222; line-height: 1.7; font-size:14px;">${post.description}</div>
             <div>
               <a class="custom-post-link" href="${post.link}" target="_blank">
                 <i class="far fa-comment-dots"></i> مشاهده نظرات و ادامه مطلب
