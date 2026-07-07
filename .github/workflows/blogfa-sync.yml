@@ -10,12 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        # CHANGED: Bumped from v4 to v4.2.2 (or latest) which updates internal Node configurations
         uses: actions/checkout@v4.2.2
         
       - name: Pull blog posts
-        # CHANGED: Bumped from v1 to v1.6.8 (or your feed tool's latest release)
-        uses: gautamkrishnar/blog-post-workflow@v1.6.8
+        # CHANGED: Using the official @v1 rolling tag or @v1.9.6 to get Node 24 support
+        uses: gautamkrishnar/blog-post-workflow@v1
         with:
           feed_list: "http://mahouarchive.blogfa.com/rss"
-          max_post_count: 10
+          max_post_count: 5
