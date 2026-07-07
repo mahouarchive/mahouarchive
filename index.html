@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta name="google-site-verification" content="KNosCimijs11PABxeHn2MMVs36YG3CoYw1b7uRzaA5U" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><-PostTitle-> MAHOU ARCHIVE</title>
+<script type="application/ld+json" id="schema-markup"></script>
+<script>
+(function() {
+  var schema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://mahouarchive.blogfa.com/<-PostLink->"
+    },
+    "headline": document.title || "<-PostTitle->",
+    "description": "ارشیوی از مدیا، متن‌ها و پلی‌لیست‌های اختصاصی در وبلاگ MAHOU ARCHIVE",
+    "image": "https://uploadkon.ir/uploads/06a730_26InShot-20260530-094627246.gif",
+    "datePublished": "<-PostDate->",
+    "dateModified": "<-PostDate->",
+    "author": {
+      "@type": "Person",
+      "name": "Edgar",
+      "url": "https://mahouarchive.blogfa.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "MAHOU ARCHIVE",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://uploadkon.ir/uploads/06a730_26InShot-20260530-094627246.gif"
+      }
+    }
+  };
+  
+  document.getElementById('schema-markup').text = JSON.stringify(schema);
+})();
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Vazirmatn:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="back-to-top" title="Reload Position"><i class="fas fa-crosshairs"></i></div>
+
+<div class="container">
+
+  <div class="header">
+    <a href="<-BlogUrl->" class="logo">MAHOU ARCHIVE: ارشیو مدیا </a>
+    <div><i class="fas fa-bullseye"></i></div>
+  </div>
+
+  <div class="main">
+
+    <div>
+      <sidebar style="display:none">🖤</sidebar>
+      <BLOGFA>
+        <div class="post">
+          <h2><a href="<-PostLink->">✮<-PostTitle-></a></h2>
+        
+          <div class="post-meta">
+            <span><i class="fas fa-dot-circle"></i> <-PostDate-></span>
+            <span><i class="far fa-clock"></i> <-PostTime-></span>
+          </div>
+
+          <p><-PostContent-></p>
+
+          <div class="post-stats-bar" data-postid="<-PostId->">
+            <span class="stat-item view-count-wrapper">
+              <i class="fas fa-eye"></i> <span class="view-num">0</span> views
+            </span>
+            <button class="stat-item fire-like-btn" onclick="handleFireLike('<-PostId->')">
+              <i class="far fa-heart heart-icon"></i> <span class="like-num">0</span> likes
+            </button>
+          </div>
+
+          <div class="post-action-row">
+            <a href="<-PostLink->#comments-anchor" class="comment-redirect-link" id="counter-btn-<-PostId->">
+              <i class="far fa-comment-dots"></i> <span class="cmt-count-text">۰ نظر</span>
+            </a>
+            <BlogExtendedPost><a href="<-PostLink->" class="n">> ادامه مطلب </a></BlogExtendedPost>
+          </div>
+
+          <div class="comments-section" id="comments-anchor" data-postid="<-PostId->">
+            <h4><i class="far fa-comments"></i> نظرات / Comments</h4>
+            
+            <div class="cmt-account-wrapper" id="auth-panel-<-PostId->"></div>
+
+            <div class="comments-list" id="comments-list-<-PostId->">
+              <p style="font-size:0.85rem; color:#aaa;">در حال بارگذاری نظرات...</p>
+            </div>
+
+            <div class="reply-indicator-alert" id="reply-alert-<-PostId->">
+              <span id="reply-alert-text-<-PostId->">پاسخ دادن به پیام...</span>
+              <span style="cursor:pointer;" onclick="cancelReplyThread('<-PostId->')">✖</span>
+            </div>
+            
+            <div class="comment-form">
+              <input type="hidden" id="comment-parent-id-<-PostId->" value="">
+              <textarea id="comment-text-<-PostId->" placeholder="پیام شما / Type your comment..." required></textarea>
+              <button onclick="handleSendComment('<-PostId->')">ارسال نظر / Send</button>
+            </div>
+          </div>
+
+          <BlogPostTagsBlock>
+            <br>تگ ها: <BlogPostTags separator=" "><a href="<-TagLink->"><-TagName-></a></BlogPostTags>
+          </BlogPostTagsBlock>
+   
+          <BlogComment></BlogComment>
+        </div>
+      </BLOGFA>
+    </div>
+
+    <div class="sidebar">
+
+      <div class="panel">
+        <b><i class="fas fa-user-circle"></i>About Me!</b>
+        <div class="webmaster-profile">
+          <div class="webmaster-avatar">
+            <img src="https://uploadkon.ir/uploads/06a730_26InShot-20260530-094627246.gif" alt="Operator Edgar">
+          </div>
+          <div class="webmaster-info">
+            <h3>ALLSSEY (He/Him)</h3>
+            <span class="role">Sleepy</span>
+          </div>
+        </div>
+        <div class="webmaster-bio">
+          <span style="display: block; margin-top: 8px; color: #ff2e63; font-weight: bold; font-family:'Inter'; font-size:11px;"> STATUS: aint nothing but a heartache</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <b><i class="fas fa-music"></i> 🎧 Playlists </b>
+        <div id="playlist-container"></div>
+        <audio id="player" controls preload="none"></audio>
+      </div>
+
+      <div class="panel">
+        <b><i class="fas fa-shield-alt"></i> About </b>
+        <img class="about-img" src="https://uploadkon.ir/uploads/c9b229_26cff7ba6be9f4ab104271ca89e4451844.jpg" alt="Surveillance Layer Image">
+        <div class="webmaster-bio" style="font-size:0.82rem; color:#5a5666;">
+          WIP <span style="display: block; margin-top: 6px; color: #ff2e63; font-family:'Inter'; font-weight: bold;">TIMESTAMP: 9th Kho/405 🎯</span>
+          <img src="https://uploadkon.ir/uploads/45d730_26IMG-7133.gif" style="display: block; margin-top: 10px; width:100%; border: 2px solid #1a1820;">
+        </div>
+      </div>
+<!-- Tags Panel Start -->
+      <div class="panel">
+        <b><i class="fas fa-tags"></i> ✮ Tags Cloud </b>
+        <div class="tags-cloud-container">
+          <BlogTagsBlock>
+            <BlogTagsLoop>
+              <a href="<-TagLink->" class="cloud-tag-item">
+                <i class="fas fa-hashtag"></i> <-TagName->
+              </a>
+            </BlogTagsLoop>
+          </BlogTagsBlock>
+        </div>
+      </div>
+      <!-- Tags Panel End -->
+      <div class="panel">
+        <b><i class="fas fa-history"></i> ✮ Archives </b>
+        <div class="archive-list">
+          <BLOGFA>
+            <a href="https://mahouarchive.blogfa.com/post/5/%d9%86%d8%ad%d9%8-%da%a9%d8%a7%d8%b1-%d8%a8%d8%a7-%d9%be%d9%84%db%8c-%d9%84%db%8c%d8%b3%d8%aa-%d9%87%d8%a7-" class="archive-link">
+              <span>استفاده از پلی لیست ها</span>
+              <i class="fas fa-arrow-left"></i>
+            </a>
+          </BLOGFA>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://evbqkoyqgixyvkgcfzpu.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2YnFrb3lxZ2l4eXZrZ2NmenB1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4MTY5NjQsImV4cCI6MjA5NjM5Mjk2NH0.anZeFQ-32U3c3h0fWlAbbIfzGM2F2--P4ndQMM5aGN4";
+const WEBMASTER_SECRET_KEY = "edgar123";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+let userFingerprint = "";
+
+const AVATAR_LIST = [
+  "https://uploadkon.ir/uploads/fa3e29_26IMG-20260529-231618.jpg",
+  "https://uploadkon.ir/uploads/b4f529_26IMG-20260529-231602.jpg",
+  "https://uploadkon.ir/uploads/203530_26IMG-20260530-165511.jpg",
+  "https://uploadkon.ir/uploads/01bf30_26images-9-.jpeg",
+  "https://uploadkon.ir/uploads/c1b530_26images-10-.jpeg",
+  "https://uploadkon.ir/uploads/e13f30_26IMG-20260530-165538.jpg",
+  "https://uploadkon.ir/uploads/c9b229_26cff7ba6be9f4ab104271ca89e4451844.jpg"
+];
+const ADMIN_AVATAR_IMAGE = "https://uploadkon.ir/uploads/06a730_26InShot-20260530-094627246.gif";
+// ==========================================
+// 🎧 DATA DEFINITION & AUDIO CONTROLLER
+// ==========================================
+const playlists = [
+  {
+    folderName: "Madoka Magica OST",
+    songs: [
+      {
+        name: "sis puella magica!",
+        url: "https://uploadkon.ir/uploads/1fd629_2614-Sis-Puella-Magica-Yuki-Kajiura-320-.mp3",
+        cover: "https://uploadkon.ir/uploads/fa3e29_26IMG-20260529-231618.jpg"
+      },
+      {
+        name: "Dectrum",
+        url: "https://uploadkon.ir/uploads/312d29_2612-Decretum-Sayaka-Miki-s-Them-Madoka-Magica【まどか★マギカ】-PianoBox.mp3",
+        cover: "https://uploadkon.ir/uploads/b4f529_26IMG-20260529-231602.jpg"
+      },
+      {
+        name: "Magia Quattro",
+        url: "https://uploadkon.ir/uploads/b38330_26Kalafina-Magia-quattro-128.mp3",
+        cover: "https://uploadkon.ir/uploads/ea1130_26artworks-000034010291-41yfh5-t500x500.jpg"
+      }
+    ]
+  }, 
+  {
+    folderName: "All Ado",
+    songs: [
+      {
+        name: "Kura Kura",
+        url: "https://uploadkon.ir/uploads/fb4630_26Ado-クラクラ-128.mp3",
+        cover: "https://uploadkon.ir/uploads/203530_26IMG-20260530-165511.jpg"
+       },
+      { 
+ name: "Ashite Ashite",
+        url: "https://uploadkon.ir/uploads/eb8c24_26Ado-Aishite-Aishite-Aishite-000035.mp3",
+        cover: "https://uploadkon.ir/uploads/6b9724_261ca44dc5eac6d36f42e0e05fd4fa1b63.jpg"
+       },
+      { 
+     name:  "Readymade",
+        url: "https://uploadkon.ir/uploads/926d24_26Ado-Readymade-000012.mp3",
+        cover: "https://uploadkon.ir/uploads/ff9f24_2628a32cbc5884bbb69739f1f073c541bb-1000x1000x1.png"
+       },
+      {
+        name: "God-ish",
+        url: "https://uploadkon.ir/uploads/d4d624_26Ado-God-ish-000046.mp3",
+        cover: "https://uploadkon.ir/uploads/25ab24_26634ac404c5a9b92c40416a83906fa4f9-1000x1000x1.png"
+       },
+      {
+        name: "Chocolat Cadabra",
+        url: "https://uploadkon.ir/uploads/212930_26Ado-ショコラカタブラ-128.mp3",
+        cover: "https://uploadkon.ir/uploads/01bf30_26images-9-.jpeg"
+      },
+      {
+        name: "MIRROR",
+        url: "https://uploadkon.ir/uploads/363c30_26Ado-MIRROR-128.mp3",
+        cover: "https://uploadkon.ir/uploads/c1b530_26images-10-.jpeg"
+      },
+      {
+        name: "RuLe",
+        url: "https://uploadkon.ir/uploads/ecf730_26Ado-Rule-128.mp3",
+        cover: "https://uploadkon.ir/uploads/e13f30_26IMG-20260530-165538.jpg"
+      },
+      {
+        name: "BACKLIGHT",
+        url: "https://uploadkon.ir/uploads/ecf730_26Ado-逆光-ウタ-from-ONE-PIECE-FILM-RED-128.mp3",
+        cover: "https://uploadkon.ir/uploads/203530_26IMG-20260530-165511.jpg"
+      },
+      {
+        name: "I'm A Controversy",
+        url: "https://uploadkon.ir/uploads/eaa130_26Im-a-controversy-Ado.mp3",
+        cover: "https://uploadkon.ir/uploads/7f5430_26images-11-.jpeg"
+      }
+    ]
+  }, 
+{
+  folderName: "Fav late nighters",
+  songs: [
+    {
+      name: "Salt-Wound routine",
+      url: "https://uploadkon.ir/uploads/dc8024_26saltwound-routine-11vein.mp3",
+      cover: "https://uploadkon.ir/uploads/519024_261782114380677.jpg"
+    }
+  ]
+}
+];
+let currentFolderIdx = null;
+let currentSongIdx = null;
+
+function toPersianNum(num) {
+  const id = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+  return num.toString().replace(/[0-9]/g, function(w){ return id[+w]; });
+}
+
+async function initUserFingerprint() {
+  try {
+    let localSpecs = window.screen.width + "x" + window.screen.height + navigator.language + navigator.userAgent.substring(0, 20);
+    userFingerprint = btoa(localSpecs).replace(/[^a-zA-Z0-9]/g, "").substring(0, 15);
+  } catch (err) {
+    userFingerprint = localStorage.getItem('blog_fallback_uid') || 'uid_' + Math.random().toString(36).substring(2, 11);
+    localStorage.setItem('blog_fallback_uid', userFingerprint);
+  }
+}
+
+// رندر آنی و ایمن لیست پخش پیش از اجرای سایر فانکشن‌های دیتابیس
+const container = document.getElementById('playlist-container');
+if (container && playlists && playlists.length > 0) {
+  playlists.forEach((folder, fIdx) => {
+    const fDiv = document.createElement('div');
+    fDiv.className = 'playlist-folder';
+
+    fDiv.innerHTML = `
+      <div class="folder-header" onclick="toggleFolder(${fIdx})">
+        <div class="folder-title">
+          <i class="fas fa-folder"></i> 
+          <span>${folder.folderName}</span>
+        </div>
+        <div class="folder-chevron"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="folder-songs" id="folder-${fIdx}">
+        <div class="folder-songs-inner"></div>
+      </div>
+    `;
+    
+    const inner = fDiv.querySelector('.folder-songs-inner');
+    folder.songs.forEach((song, sIdx) => {
+      const sDiv = document.createElement('div');
+      sDiv.className = 'song';
+      sDiv.id = `song-${fIdx}-${sIdx}`;
+      sDiv.onclick = (e) => { 
+        e.stopPropagation(); 
+        playTrack(fIdx, sIdx); 
+      };
+      
+      sDiv.innerHTML = `
+        <img src="${song.cover || 'https://uploadkon.ir/uploads/06a730_26InShot-20260530-094627246.gif'}">
+        <span>${song.name}</span>
+        <div class="wave"><span></span><span></span><span></span></div>
+      `;
+      inner.appendChild(sDiv);
+    });
+    
+    container.appendChild(fDiv);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await initUserFingerprint();
+  const currentUrl = window.location.href.toLowerCase();
+  const isExtendedPostView = (currentUrl.indexOf('/post/') > -1 || currentUrl.indexOf('post=') > -1);
+  const statBars = document.querySelectorAll(".post-stats-bar");
+  
+  for (const bar of statBars) {
+    const postId = bar.getAttribute("data-postid");
+    if (!postId) continue;
+    
+    const viewNumEl = bar.querySelector(".view-num");
+    const likeNumEl = bar.querySelector(".like-num");
+    const likeBtn = bar.querySelector(".fire-like-btn");
+    
+    let { data: post } = await supabaseClient
+      .from('blog_posts')
+      .select('*')
+      .eq('post_id', postId)
+      .maybeSingle();
+      
+    const hasViewedThisSession = sessionStorage.getItem(`viewed_session_${postId}`);
+    
+    if (!post) {
+      const { data: newPost } = await supabaseClient
+        .from('blog_posts')
+        .insert([{ post_id: postId, views: 1, likes: 0, liked_by: [] }])
+        .select()
+        .single();
+      post = newPost;
+      sessionStorage.setItem(`viewed_session_${postId}`, "true");
+    } else if (!hasViewedThisSession) {
+      const { data: updatedPost } = await supabaseClient
+        .from('blog_posts')
+        .update({ views: post.views + 1 })
+        .eq('post_id', postId)
+        .select()
+        .single();
+      post = updatedPost;
+      sessionStorage.setItem(`viewed_session_${postId}`, "true");
+    }
+    
+    if (post) {
+      if (viewNumEl) viewNumEl.innerText = post.views;
+      if (likeNumEl) likeNumEl.innerText = post.likes;
+      if (post.liked_by && post.liked_by.includes(userFingerprint)) {
+        likeBtn.classList.add("liked");
+        likeBtn.querySelector(".heart-icon").className = "fas fa-heart heart-icon";
+      }
+    }
+    
+    const commentBoxSection = document.querySelector(`.comments-section[data-postid="${postId}"]`);
+    if (commentBoxSection) {
+      if (isExtendedPostView) {
+        commentBoxSection.classList.add("show-explicit");
+        renderAuthPanel(postId, 'signin');
+        loadPostComments(postId);
+      } else {
+        updateCommentCounterBadge(postId);
+      }
+    }
+  }
+
+  const player = document.getElementById('player');
+  if (player) {
+    player.addEventListener('ended', () => {
+      if (currentFolderIdx !== null && currentSongIdx !== null) {
+        let next = currentSongIdx + 1;
+        if (next >= playlists[currentFolderIdx].songs.length) next = 0;
+        playTrack(currentFolderIdx, next);
+      }
+    });
+  }
+});
+async function handleFireLike(postId) {
+  const bar = document.querySelector(`.post-stats-bar[data-postid="${postId}"]`);
+  if (!bar) return;
+  
+  const likeBtn = bar.querySelector(".fire-like-btn");
+  const likeNumEl = bar.querySelector(".like-num");
+  const heartIcon = likeBtn.querySelector(".heart-icon");
+  
+  // 1. Fetch current live status of the post
+  let { data: post } = await supabaseClient
+    .from('blog_posts')
+    .select('*')
+    .eq('post_id', postId)
+    .maybeSingle();
+    
+  if (!post) return;
+  
+  let likedBy = post.liked_by || [];
+  let currentLikes = post.likes || 0;
+  const hasLiked = likedBy.includes(userFingerprint);
+  
+  // 2. Toggle status locally 
+  if (hasLiked) {
+    // Unlike execution
+    likedBy = likedBy.filter(id => id !== userFingerprint);
+    currentLikes = Math.max(0, currentLikes - 1);
+    
+    likeBtn.classList.remove("liked");
+    heartIcon.className = "far fa-heart heart-icon";
+  } else {
+    // Like execution
+    likedBy.push(userFingerprint);
+    currentLikes += 1;
+    
+    likeBtn.classList.add("liked");
+    heartIcon.className = "fas fa-heart heart-icon";
+  }
+  
+  // 3. Sync changes directly to Supabase
+  const { data: updatedPost, error } = await supabaseClient
+    .from('blog_posts')
+    .update({ likes: currentLikes, liked_by: likedBy })
+    .eq('post_id', postId)
+    .select()
+    .single();
+    
+  if (error) {
+    console.error("Error updating likes:", error);
+    return;
+  }
+  
+  // 4. Update the visual counter counter number
+  if (updatedPost && likeNumEl) {
+    likeNumEl.innerText = updatedPost.likes;
+  }
+}
+function toggleFolder(idx) {
+  const folders = document.querySelectorAll('.playlist-folder');
+  folders.forEach((f, i) => {
+    if(i === idx) {
+      f.classList.toggle('is-open');
+    } else {
+      f.classList.remove('is-open');
+    }
+  });
+}
+
+function playTrack(fIdx, sIdx) {
+  const player = document.getElementById('player');
+  if (!player) return;
+
+  document.querySelectorAll('.song').forEach(s => s.classList.remove('is-playing'));
+  
+  currentFolderIdx = fIdx; 
+  currentSongIdx = sIdx;
+  
+  const songEl = document.getElementById(`song-${fIdx}-${sIdx}`);
+  if(songEl) songEl.classList.add('is-playing');
+  
+  player.src = playlists[fIdx].songs[sIdx].url;
+  player.style.display = 'block';
+  player.play().catch(err => console.log("Audio representation blocked:", err));
+}
+// Add this somewhere inside your script block (e.g., right before DOMContentLoaded)
+function updateCommentCounterBadge(postId) {
+  console.log("Placeholder: Fetching comment count for post " + postId);
+  // Eventually, you'll query Supabase here to get comment counts and update your HTML
+}
+</script>
+<BlogNextAndPreviousBlock>
+<div class="site-pagination">
+  <BlogNextPageBlock>
+    <a href="<-BlogNextPageLink->" class="page-arrow">
+      <i class="fas fa-arrow-right"></i>
+      <span>مطالب قدیمی‌تر</span>
+    </a>
+  </BlogNextPageBlock>
+
+  <BlogPreviousPageBlock>
+    <a href="<-BlogPreviousPageLink->" class="page-arrow">
+      <span>مطالب جدیدتر</span>
+      <i class="fas fa-arrow-left"></i>
+    </a>
+  </BlogPreviousPageBlock>
+</div>
+</BlogNextAndPreviousBlock>
+<script>
+// این اسکریپت فقط در صورتی اجرا می‌شود که کانتینر مانگا در صفحه موجود باشد
+if (document.querySelector('.manga-container')) {
+  const chapters = {
+    ch1: [
+      "https://uploadkon.ir/uploads/48f320_26PhantomBusters-1-1-mahouarchive-blogfa-com.pdf", // آدرس تست - اینجا لینک صفحات واقعی مانگا رو بذارید
+      "https://uploadkon.ir/uploads/ebb320_26PhantomBusters-1-2-mahouarchive-blogfa-com.pdf"
+    ]
+  };
+
+  let currentChapter = "ch1";
+  let currentPageIndex = 0;
+  let currentMode = "vertical";
+
+  function loadManga() {
+    const viewer = document.getElementById("manga-viewer");
+    if(!viewer) return;
+    viewer.innerHTML = "";
+    const pages = chapters[currentChapter];
+    pages.forEach((src, index) => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "Page " + (index + 1);
+      if (index === 0) img.classList.add("current-page");
+      viewer.appendChild(img);
+    });
+    updateCounter();
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    const viewer = document.getElementById("manga-viewer");
+    const nav = document.getElementById("single-nav");
+    document.getElementById("btn-vertical").classList.remove("active-mode");
+    document.getElementById("btn-single").classList.remove("active-mode");
+    if (mode === "vertical") {
+      viewer.className = "mode-vertical";
+      nav.style.display = "none";
+      document.getElementById("btn-vertical").classList.add("active-mode");
+    } else {
+      viewer.className = "mode-single";
+      nav.style.display = "flex";
+      document.getElementById("btn-single").classList.add("active-mode");
+      currentPageIndex = 0;
+      showPage(0);
+    }
+  }
+
+  function showPage(index) {
+    const imgs = document.querySelectorAll("#manga-viewer img");
+    if(imgs.length === 0) return;
+    imgs.forEach(img => img.classList.remove("current-page"));
+    if (index >= imgs.length) currentPageIndex = imgs.length - 1;
+    if (index < 0) currentPageIndex = 0;
+    imgs[currentPageIndex].classList.add("current-page");
+    updateCounter();
+  }
+
+  function nextPage() {
+    const imgs = document.querySelectorAll("#manga-viewer img");
+    if (currentPageIndex < imgs.length - 1) {
+      currentPageIndex++;
+      showPage(currentPageIndex);
+      window.scrollTo({ top: document.querySelector('.manga-container').offsetTop, behavior: 'smooth' });
+    }
+  }
+
+  function prevPage() {
+    if (currentPageIndex > 0) {
+      currentPageIndex--;
+      showPage(currentPageIndex);
+      window.scrollTo({ top: document.querySelector('.manga-container').offsetTop, behavior: 'smooth' });
+    }
+  }
+
+  function updateCounter() {
+    const total = chapters[currentChapter].length;
+    document.getElementById("page-counter").innerText = "Page " + (currentPageIndex + 1) + " / " + total;
+  }
+
+  function changeChapter(chId) {
+    currentChapter = chId;
+    currentPageIndex = 0;
+    loadManga();
+    if(currentMode === 'single') showPage(0);
+  }
+
+  // اجرای خودکار پس از لود صفحه
+  loadManga();
+}
+</script>
+<script>
+  // Replace with your actual Blogfa RSS URL
+  const rssFeedUrl = "http://yourusername.blogfa.com/rss"; 
+  const apiEndpoint = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
+
+  async function loadMirrorPosts() {
+    try {
+      const response = await fetch(apiEndpoint);
+      const data = await response.json();
+
+      if (data.status === 'ok') {
+        const container = document.getElementById('blogfa-mirror-posts');
+        container.innerHTML = ''; // Clear the loading text
+
+        data.items.forEach(post => {
+          // Create the post structure. 
+          // Modify these class names to match your Blogfa theme's CSS typography styles!
+          const postElement = document.createElement('article');
+          postElement.className = 'post-item'; 
+
+          postElement.innerHTML = `
+            <h2 class="post-title">
+              <a href="${post.link}" target="_blank">${post.title}</a>
+            </h2>
+            <div class="post-meta">Published on: ${new Date(post.pubDate).toLocaleDateString()}</div>
+            <div class="post-content">${post.description}</div>
+            <hr class="post-separator" />
+          `;
+          
+          container.appendChild(postElement);
+        });
+      } else {
+        document.getElementById('blogfa-mirror-posts').innerHTML = '<p>Failed to load backup archive.</p>';
+      }
+    } catch (error) {
+      console.error('Error fetching RSS:', error);
+      document.getElementById('blogfa-mirror-posts').innerHTML = '<p>Error loading content.</p>';
+    }
+  }
+
+  // Run the function when the page loads
+  window.onload = loadMirrorPosts;
+</script>
+</body>
+</html>
