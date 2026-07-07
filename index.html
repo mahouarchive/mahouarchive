@@ -667,5 +667,59 @@ if (document.querySelector('.manga-container')) {
   // Run the function when the page loads
   window.onload = loadMirrorPosts;
 </script>
+<script>
+  // 1. Set your Blogfa RSS URL
+  const rssFeedUrl = "http://mahouarchive.blogfa.com/rss"; 
+  
+  // We use rss2json to convert Blogfa's XML feed into a clean JSON format browsers can read
+  const apiEndpoint = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssFeedUrl)}`;
+
+  async function loadMirrorPosts() {
+    try {
+      const response = await fetch(apiEndpoint);
+      const data = await response.json();
+
+      if (data.status === 'ok') {
+        const container = document.getElementById('blogfa-mirror-posts');
+        container.innerHTML = ''; // Clear out the "Loading..." text
+
+        // Loop through each post found in your RSS feed
+        data.items.forEach(post => {
+          const postElement = document.createElement('article');
+          postElement.className = 'post'; // Uses your exact post styling class from style.css
+
+          // Constructing the HTML using your custom stylesheet classes
+          postElement.innerHTML = `
+            <h2>
+              <a href="${post.link}" target="_blank">${post.title}</a>
+            </h2>
+            <div class="post-meta">
+              <span><i class="fa-regular fa-calendar"></i> ${new Date(post.pubDate).toLocaleDateString('fa-IR')}</span>
+            </div>
+            <p>${post.description}</p>
+            
+            <div class="post-action-row">
+              <a class="comment-redirect-link" href="${post.link}" target="_blank">
+                💬 مشاهده نظرات در وبلاگ اصلی
+              </a>
+            </div>
+          `;
+          
+          container.appendChild(postElement);
+        });
+      } else {
+        document.getElementById('blogfa-mirror-posts').innerHTML = 
+          '<p style="text-align: center; padding: 20px;">خطا در بارگذاری اطلاعات وبلاگ.</p>';
+      }
+    } catch (error) {
+      console.error('Error fetching RSS:', error);
+      document.getElementById('blogfa-mirror-posts').innerHTML = 
+        '<p style="text-align: center; padding: 20px;">مشکلی در اتصال به آرشیو پیش آمد.</p>';
+    }
+  }
+
+  // Trigger the engine to run immediately when the page finishes loading
+  window.addEventListener('DOMContentLoaded', loadMirrorPosts);
+</script>
 </body>
 </html>
