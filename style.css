@@ -72,7 +72,7 @@ h1, h2, h3, h4, b, .logo {
 
 .header::before {
   content: "meaow";
-  position: absolute;
+  position:;
   bottom: -11px;
   left: 30px;
   font-family: 'Inter', sans-serif;
