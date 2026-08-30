@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+{% include head-extra.html %}
+</head>
+<body>
+<div id="back-to-top" title="Reload Position"><i class="fas fa-crosshairs"></i></div>
+
+<div class="container">
+
+  <div class="header">
+    <a href="{{ '/' | relative_url }}" class="logo">MAHOU ARCHIVE: ارشیو مدیا </a>
+    <div><i class="fas fa-bullseye"></i></div>
+  </div>
+
+  <div class="top-search-bar">
+    <form class="search-form" id="post-search-form" onsubmit="return runPostSearch(event)">
+      <input type="text" id="post-search-input" class="search-input" placeholder="جستجوی عنوان مطلب... / Search post titles..." oninput="filterPostSearch()" autocomplete="off">
+      <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+    </form>
+    <div id="search-results" class="search-results"></div>
+
+    <!-- Hidden index of recent post titles, used for instant client-side filtering -->
+    <ul id="search-index" style="display:none">
+      {% for post in site.posts limit:30 %}
+      <li data-title="{{ post.title | escape }}" data-link="{{ post.url | relative_url }}">{{ post.title }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="main">
+    <div>
+      {{ content }}
+    </div>
+
+    {% include sidebar.html %}
+  </div>
+</div>
+
+<!-- Floating Mini Player -->
+<div id="sticky-mini-player" class="mini-player-hidden">
+  <div class="mini-player-content">
+    <img id="mini-cover" src="https://uploadkon.ir/uploads/06a730_26InShot-20260530-094627246.gif" alt="Cover">
+    <div class="mini-details">
+      <span id="mini-song-name">Nothing playing...</span>
+      <span class="mini-status">NOW PLAYING</span>
+    </div>
+    <button onclick="toggleStickyPlay()" id="mini-play-btn"><i class="fas fa-pause" id="mini-play-icon"></i></button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

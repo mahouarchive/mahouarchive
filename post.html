@@ -1,0 +1,54 @@
+---
+layout: default
+---
+<div class="post">
+  <h2><a href="{{ page.url | relative_url }}">✮{{ page.title }}</a></h2>
+
+  <div class="post-meta">
+    <span><i class="fas fa-dot-circle"></i> {{ page.date | date: "%Y-%m-%d" }}</span>
+    <span><i class="far fa-clock"></i> {{ page.date | date: "%H:%M" }}</span>
+  </div>
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+
+  <div class="post-stats-bar" data-postid="{{ page.id | slugify }}">
+    <span class="stat-item view-count-wrapper">
+      <i class="fas fa-eye"></i> <span class="view-num">0</span> views
+    </span>
+    <button class="stat-item fire-like-btn" onclick="handleFireLike('{{ page.id | slugify }}')">
+      <i class="far fa-heart heart-icon"></i> <span class="like-num">0</span> likes
+    </button>
+  </div>
+
+  {% if page.tags.size > 0 %}
+  <div class="post-tags-container">
+    <i class="fas fa-tags" style="color:#ff2e63;"></i>
+    {% for tag in page.tags %}
+    <a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="comments-section" id="comments-anchor" data-postid="{{ page.id | slugify }}">
+    <h4><i class="far fa-comments"></i> نظرات / Comments</h4>
+    <div class="cmt-account-wrapper" id="auth-panel-{{ page.id | slugify }}"></div>
+    <div class="comments-list" id="comments-list-{{ page.id | slugify }}">
+      <p style="font-size:0.85rem; color:#aaa;">در حال بارگذاری نظرات...</p>
+    </div>
+    <div class="comment-form">
+      <textarea id="comment-text-{{ page.id | slugify }}" placeholder="پیام شما / Type your comment..." required></textarea>
+      <button onclick="handleSendComment('{{ page.id | slugify }}')">ارسال نظر / Send</button>
+    </div>
+  </div>
+</div>
+
+<div class="pagination-bar">
+  {% if page.previous %}
+  <a href="{{ page.previous.url | relative_url }}" class="page-btn page-prev"><i class="fas fa-chevron-right"></i> جدیدتر / Newer</a>
+  {% endif %}
+  {% if page.next %}
+  <a href="{{ page.next.url | relative_url }}" class="page-btn page-next">قدیمی‌تر / Older <i class="fas fa-chevron-left"></i></a>
+  {% endif %}
+</div>

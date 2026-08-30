@@ -1,0 +1,63 @@
+<div class="sidebar">
+
+  <div class="panel panel-about-me">
+    <b><i class="fas fa-user-circle"></i>About Me!</b>
+    <div class="webmaster-profile">
+      <div class="webmaster-avatar">
+        <img src="https://uploadkon.ir/uploads/06a730_26InShot-20260530-094627246.gif" alt="Operator Edgar" loading="lazy">
+      </div>
+      <div class="webmaster-info">
+        <h3>ALLSSEY (He/Him)</h3>
+        <span class="role">Sleepy</span>
+      </div>
+    </div>
+    <div class="webmaster-bio">
+      <span style="display: block; margin-top: 8px; color: #ff2e63; font-weight: bold; font-family:'Inter'; font-size:11px;"> STATUS: aint nothing but a heartache</span>
+    </div>
+  </div>
+
+  <!-- Quick Nav / Tag cloud, built from every tag used across posts -->
+  {% assign tags = site.tags | sort %}
+  {% if tags.size > 0 %}
+  <div class="panel panel-tags">
+    <b><i class="fas fa-bookmark"></i> Quick Navigation </b>
+    <div class="tags-cloud-container">
+      {% for tag in site.tags %}
+      <a href="{{ '/tags/' | relative_url }}#{{ tag[0] | slugify }}" class="cloud-tag-item">
+        <i class="fas fa-tag"></i> {{ tag[0] }} <span class="tag-count">({{ tag[1] | size }})</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="panel panel-playlists">
+    <b><i class="fas fa-music"></i> 🎧 Playlists </b>
+    <div id="playlist-container"></div>
+    <audio id="player" controls preload="none"></audio>
+  </div>
+
+  <div class="panel panel-about">
+    <b><i class="fas fa-shield-alt"></i> About </b>
+    <img class="about-img" src="https://uploadkon.ir/uploads/c9b229_26cff7ba6be9f4ab104271ca89e4451844.jpg" alt="Surveillance Layer Image" loading="lazy">
+    <div class="webmaster-bio" style="font-size:0.82rem; color:#5a5666;">
+      WIP <span style="display: block; margin-top: 6px; color: #ff2e63; font-family:'Inter'; font-weight: bold;">TIMESTAMP: 9th Kho/405 🎯</span>
+      <img src="https://uploadkon.ir/uploads/45d730_26IMG-7133.gif" style="display: block; margin-top: 10px; width:100%; border: 2px solid #1a1820;" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Archives: auto-generated list of posts grouped by month -->
+  <div class="panel panel-archives">
+    <b><i class="fas fa-history"></i> ✮ Archives </b>
+    <div class="archive-list">
+      {% assign posts_by_month = site.posts | group_by_exp: "post", "post.date | date: '%Y-%m'" %}
+      {% for month in posts_by_month limit:12 %}
+      <a href="{{ '/archive/#' | relative_url }}{{ month.name }}" class="archive-link">
+        <span>{{ month.name }} ({{ month.items | size }})</span>
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>

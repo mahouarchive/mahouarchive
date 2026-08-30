@@ -1,0 +1,33 @@
+title: "MAHOU ARCHIVE"
+description: "ارشیوی از مدیا، متن‌ها و پلی‌لیست‌های اختصاصی در وبلاگ MAHOU ARCHIVE"
+url: "https://YOURUSERNAME.github.io"   # change to your GitHub Pages URL (or custom domain)
+baseurl: ""                              # "" if using a custom domain or username.github.io
+lang: "fa"
+
+author:
+  name: "Edgar"
+
+# Jekyll's built-in blogging engine replaces BLOGFA's post system.
+# Every file you drop in _posts/ (named YYYY-MM-DD-title.md) becomes a post.
+markdown: kramdown
+permalink: /post/:year/:month/:day/:title/
+
+paginate: 10
+paginate_path: "/page:num/"
+
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+exclude:
+  - README.md
+  - tools/
+  - node_modules/

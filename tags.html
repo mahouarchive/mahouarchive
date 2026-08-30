@@ -1,0 +1,17 @@
+---
+layout: default
+title: Tags
+permalink: /tags/
+---
+<div class="post">
+  <h2>✮ Browse by Tag</h2>
+  {% assign tags = site.tags | sort %}
+  {% for tag in tags %}
+  <h3 id="{{ tag[0] | slugify }}" style="margin-top:20px;">{{ tag[0] }} ({{ tag[1] | size }})</h3>
+  <ul style="margin: 8px 0 8px 20px;">
+    {% for post in tag[1] %}
+    <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+</div>

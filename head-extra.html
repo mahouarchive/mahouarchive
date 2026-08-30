@@ -1,0 +1,26 @@
+<meta name='description' content='manga, downloading manga, manhwa, songs, japanese creations, Yuri, yaoi, Persian, comics, books, danmei'>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if page.title %}{{ page.title }} - {% endif %}MAHOU ARCHIVE</title>
+
+<link rel="icon" type="image/png" href="https://uploadkon.ir/uploads/2f7904_26486876ce61cbc8ced9b02d0b9db9cb96.jpg">
+<link rel="shortcut icon" href="https://uploadkon.ir/uploads/2f7904_26486876ce61cbc8ced9b02d0b9db9cb96.jpg">
+<link rel="apple-touch-icon" href="https://uploadkon.ir/uploads/2f7904_26486876ce61cbc8ced9b02d0b9db9cb96.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{% if page.layout == 'post' %}BlogPosting{% else %}WebSite{% endif %}",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ page.url | absolute_url }}" },
+  "headline": "{{ page.title | default: site.title }}",
+  "description": "{{ site.description }}",
+  "image": "https://uploadkon.ir/uploads/2f7904_26486876ce61cbc8ced9b02d0b9db9cb96.jpg",
+  {% if page.date %}"datePublished": "{{ page.date | date_to_xmlschema }}", "dateModified": "{{ page.date | date_to_xmlschema }}",{% endif %}
+  "author": { "@type": "Person", "name": "{{ site.author.name }}", "url": "{{ site.url }}{{ site.baseurl }}/" },
+  "publisher": { "@type": "Organization", "name": "MAHOU ARCHIVE", "logo": { "@type": "ImageObject", "url": "https://uploadkon.ir/uploads/2f7904_26486876ce61cbc8ced9b02d0b9db9cb96.jpg" } }
+}
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Vazirmatn:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">

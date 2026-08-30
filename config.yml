@@ -1,0 +1,43 @@
+backend:
+  name: github
+  repo: YOURUSERNAME/YOURREPO       # e.g. allssey/mahou-archive
+  branch: main
+  # GitHub Pages can't run its own login server, so the github backend needs
+  # a tiny separate OAuth helper to handle "log in with GitHub" for /admin.
+  # See README.md > "Setting up the visual editor login" for the 5-minute
+  # free setup (base_url / auth_endpoint go here once you have one).
+  # base_url: https://your-oauth-helper.example.com
+  # auth_endpoint: auth
+
+# Lets the editor upload images straight into your repo instead of an
+# external image host, though you can still paste uploadkon.ir links too.
+media_folder: "uploads"
+public_folder: "/uploads"
+
+site_url: https://YOURUSERNAME.github.io
+display_url: https://YOURUSERNAME.github.io
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    label_singular: "Post"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "post/{{year}}/{{month}}/{{day}}/{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Tags", name: "tags", widget: "list", default: [] }
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          [
+            bold, italic, strikethrough, code, link,
+            heading-one, heading-two, quote,
+            code-block, bulleted-list, numbered-list
+          ]
+        media_library:
+          config:
+            multiple: false
